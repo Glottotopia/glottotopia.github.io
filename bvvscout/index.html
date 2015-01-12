@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>BBV Scout</title>
+		<link rel="stylesheet" href="./bower_components/leaflet/dist/leaflet.css" />
+		<link rel="stylesheet" href="styles/popup.css" />
+		<link rel="stylesheet" href="styles/filters.css" />
+		<script src="./bower_components/leaflet/dist/leaflet.js"></script>
+		<style>
+			* {
+				box-sizing: border-box;
+				margin: 0 0;
+			}
+
+			#map {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.about {
+				position: absolute;
+				top: 80px;
+				left: 10px;
+				text-decoration: none;
+				font-weight: bold;
+			}
+
+			#filter {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				display: block;
+				z-index: 2000;
+				background: white;
+			}
+
+		</style>
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="./bower_components/lodash/dist/lodash.min.js"></script>
+		<script src="js/app.js"></script>
+
+		<script type="text/html" id="tooltip_tmpl">
+			<div class="title"><%= standort  %></div>
+			<div class="text"><%= text %></div> 
+			<ul class="containers">
+				<li class="container-brown <% if (linke === "") { %> hidden<% }%>">
+					<span> Linke</span>
+				</li>
+				<li class="container-green <% if (gruene === "") { %> hidden<% }%>">
+					<span> Grüne</span>
+				</li>
+				<li class="container-white <% if (piraten === "") { %> hidden<% }%>">
+					<span>Piraten </span>
+				</li>
+				<li class="container-colored <% if (spd === "") { %> hidden<% }%>">
+					<span>SPD</span>
+				</li>
+			</ul> 
+			<div class="description"><%= stadtplanadresse %></div>
+		</script>
+
+	</head>
+	<body>
+		<div id=map>
+		</div>
+		<div class="about leaflet-bar">
+			<a href="https://github.com/k-nut/altglas" title="Über das Projekt ...">?</a>
+		</div>
+		<div id="filter" class="filters">
+			<h2>BVV-Drucksachen in Berlin</h2>
+<!-- <p>Noch sind leider nur die Daten für Charlottenburg Wilmersdorf freigegeben. Wenn du selbst Daten anbietest kannst du sie gerne per Pull-Request hinzufügen oder dich per Mail melden. <a href="mailto:altglas@k-nut.eu">altglas@k-nut.eu</a> </p> -->
+			<p>Hier kannst du einschränken, welche Drucksachen angezeigt werden.</p>
+			<div class="filter-controls">
+				<input type="checkbox" id="linke" /> <label for="linke"> Linke </label>
+				<input type="checkbox" id="piraten" /> <label for="piraten"> Piraten </label>
+				<input type="checkbox" id="gruene" /> <label for="gruene"> Grüne </label>
+				<input type="checkbox" id="spd"/> <label for="spd"> SPD </label>
+<!--				PLZ: <select id="plz" >
+					<option value="-1">-----</option>
+					<option value="10585">10585</option>
+					<option value="10587">10587</option>
+					<option value="10589">10589</option>
+					<option value="10625">10625</option>
+					<option value="10627">10627</option>
+					<option value="10629">10629</option>
+					<option value="10707">10707</option>
+					<option value="10709">10709</option>
+					<option value="10711">10711</option>
+					<option value="10713">10713</option>
+					<option value="10715">10715</option>
+					<option value="10717">10717</option>
+					<option value="10719">10719</option>
+					<option value="10779">10779</option>
+					<option value="10789">10789</option>
+					<option value="10825">10825</option>
+					<option value="13627">13627</option>
+					<option value="13629">13629</option>
+					<option value="14050">14050</option>
+					<option value="14052">14052</option>
+					<option value="14055">14055</option>
+					<option value="14057">14057</option>
+					<option value="14059">14059</option>
+					<option value="14193">14193</option>
+					<option value="14195">14195</option>
+					<option value="14197">14197</option>
+					<option value="14199">14199</option>
+				</select>-->
+<!--				Aufsteller: <select id="supplier">
+					<option value="">------</option>
+					<option value="Karl Meyer">Karl Meyer</option>
+					<option value="Berlin Recycling">Berlin Recycling</option>
+				</select>-->
+				Bezirk: <select id="bezirk">
+					<option value="">------</option>
+					<option value="CW">Charlottenburg-Wilmersdorf</option>
+					<option value="NK">Neukölln</option>
+				</select>
+				Typ: <select id="typ">
+					<option value="">------</option>
+					<option value="Anfrage">Anfrage</option>
+					<option value="Resolution">Resolution</option>
+					<option value="Antrag">Antrag</option> 
+				</select>
+			</div>
+		</div>
+
+		</body>
+	</html>

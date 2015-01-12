@@ -1,0 +1,167 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.31822,
+          52.48264
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Karl Meyer",
+        "bezirk": "CW",
+	"typ":"Antrag",
+        "spd": "1",
+        "piraten": "",
+        "id": "2",
+        "gruene": "1",
+        "linke": "1",
+        "stadtplanadresse": "Mecklenburgische Str. 89",
+        "standort": "Mehr für alle!",
+        "breitengrad": "52,59264",
+        "lfd_nr_": "CW 1",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,31822"
+      },
+      "id": null
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.32056,
+          52.48328
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Karl Meyer",
+        "bezirk": "CW",
+	"typ":"Antrag",
+        "spd": "",
+        "piraten": "",
+        "id": "4",
+        "gruene": "1",
+        "linke": "",
+        "stadtplanadresse": "Am Volkspark 85",
+        "standort": "Schluss mit Schrott!",
+        "breitengrad": "52,48328",
+        "lfd_nr_": "CW 2",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,32056"
+      },
+      "id": null
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.3139,
+          52.47588
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Karl Meyer",
+        "bezirk": "CW",
+	"typ":"Resolution",
+        "spd": "1",
+        "piraten": "1",
+        "id": "6",
+        "gruene": "",
+        "linke": "1",
+        "stadtplanadresse": "A\u00dfmannshauser Str. 17",
+        "standort": "Bürgernähe im Amt!",
+        "breitengrad": "52,47588",
+        "lfd_nr_": "CW 3",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,3139"
+      },
+      "id": null
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.42819,
+          52.459537
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Berlin Recycling", 
+        "bezirk": "NK",
+        "typ": "Antrag",
+        "spd": "1",
+        "piraten": "1",
+        "id": "8",
+        "gruene": "1",
+        "linke": "1",
+        "stadtplanadresse": "Ballenstedter Str. 2",
+        "standort": "Alles muss besser werden",
+        "breitengrad": "52,59537",
+        "lfd_nr_": "CW 4",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,30819"
+      },
+      "id": null
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.31376,
+          52.48393
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Karl Meyer",
+        "bezirk": "CW",
+	"typ":"Anfrage",
+        "spd": "",
+        "piraten": "",
+        "id": "10",
+        "gruene": "1",
+        "linke": "",
+        "stadtplanadresse": "Barstr. 42",
+        "standort": "Immer druff, aber zackig!",
+        "breitengrad": "52,48393",
+        "lfd_nr_": "CW 5",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,31376"
+      },
+      "id": null
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.28279,
+          52.4814
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "aufsteller": "Karl Meyer",
+        "bezirk": "CW",
+	"typ":"Antrag",
+        "spd": "",
+        "piraten": "1",
+        "id": "12",
+        "gruene": "1",
+        "linke": "",
+        "stadtplanadresse": "Berkaer Str. 27",
+        "standort": "Not beenden!",
+        "breitengrad": "52,4814",
+        "lfd_nr_": "CW 6",
+        "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "laengengrad": "13,28279"
+      },
+      "id": null
+    }
+  ]
+}
