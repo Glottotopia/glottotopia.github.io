@@ -1,32 +1,5 @@
 function vardata(){
-  return [
-    {
-        "source" :       "здраво",
-        "target":   "Hallo",
-        "phonetic":     "хало",
-        "domain": "greeting",
-    },
-    {
-        "source":       "Добар дан",
-        "target":   "Guten Morgen",
-        "phonetic":     "гутен морген",
-        "domain": "greeting",
-    }
-,
-    {
-        "source":       "Жедна сам",
-        "target":   "Ich habe Durst",
-        "phonetic":     "их хабе дурст",
-        "domain": "needs",
-    }
-,
-    {
-        "source":       "Oво је мој брат",
-        "target":   "Das ist mein Bruder",
-        "phonetic":     "даш ист маин бруда",
-        "domain": "kin",
-    }  
-    ,
+  return [   
 {
 "target":	"guten Abend",
 "source":	"добро вече",
