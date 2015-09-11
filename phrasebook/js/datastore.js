@@ -253,13 +253,6 @@ function vardata(){
 }
 ,
 {
-"target":	"Mir ist schlecht.",
-"source":	"Bolesna sam. Bolestan sam. Nije mi dobro.",
-"phonetic":	"мир ист шлехт  ",
-"domain":""
-}
-,
-{
 "target":	"Ich freue mich / ich bin glücklich",
 "source":	"сретна сам  ",
 "phonetic":	"их фроие мих ",
