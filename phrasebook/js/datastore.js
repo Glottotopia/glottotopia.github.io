@@ -296,7 +296,7 @@ function vardata(){
 ,
 {
 "target":	"Wie heißen Sie?",
-"source":	"Kako se zovete?  Како се зовете?",
+"source":	"Како се зовете?",
 "phonetic":	"ви хаишен си ",
 "domain":""
 }
