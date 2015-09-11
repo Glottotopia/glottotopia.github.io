@@ -239,20 +239,6 @@ function vardata(){
 }
 ,
 {
-"target":	"Ich wurde vergewaltigt.",
-"source":	"",
-"phonetic":	"их вурде феагевалтикт ",
-"domain":""
-}
-,
-{
-"target":	"Mir ist schwindelig.",
-"source":	"Vrti mi se u glavi.",
-"phonetic":	"мир ист швиндлик ",
-"domain":""
-}
-,
-{
 "target":	"Ich freue mich / ich bin glücklich",
 "source":	"сретна сам  ",
 "phonetic":	"их фроие мих ",
