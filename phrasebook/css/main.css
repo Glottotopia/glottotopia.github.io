@@ -22,3 +22,8 @@ width:100px;
 text-align:center;
 border-radius:1px;
 }
+
+.selector{
+  display:inline-block;
+  width:200px;
+}  

@@ -17,11 +17,42 @@
 </head>
 <body>
 
+<div class="selector">
+  <p> Source language </p>
+  <select>
+    <option value=""> Arabic  </option>
+    <option value=""> Serbian  </option>
+    <option value=""> Macedonian </option>
+    <option value=""> ... </option>
+  <select>
+</div>
+
+<div class="selector">
+  <p> Target language </p>
+  <select>
+    <option value=""> German </option>
+    <option value=""> English </option>    
+    <option value=""> ... </option>
+  <select>
+</div>
+
+<div class="selector">
+  <p> Transcription system </p>
+  <select>
+    <option> SAMPA </option>
+    <option> pseudo-English </option>
+    <option> cyrphon </option>
+    <option> arabphon </option>
+  <select>
+</div>
+
+
 <table id="varpopulate" class="transtable"/> 
 
-<table id="jsonpopulate"  class="transtable"/>
+<!-- <table id="jsonpopulate"  class="transtable"/> -->
 
-<button onclick="populateTable('serb1234','stan1234','cyrtrans')">pop</button>
+<!-- <button onclick="populateTable('serb1234','stan1234','cyrtrans')">pop</button> -->
+
 <div id="export"> export
 <ul>
   <li> pdf </li>
