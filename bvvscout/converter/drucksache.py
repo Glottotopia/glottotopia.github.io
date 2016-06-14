@@ -7,11 +7,11 @@ from  html.entities import name2codepoint
 
 import tempfile  
 import re
+import json 
 
 class Drucksache:
   def __init__(self, bezirk, filename, parteien, baseurl):
-    self.filename = filename   
-    print(filename)
+    self.filename = filename 
     self.bezirk = bezirk  
     self.url = filename
     self.parsetree = None
@@ -24,7 +24,8 @@ class Drucksache:
     self.status = None
     self.parteien = parteien
     self.location = None
-    self.ID = "%s_%s" % (self.bezirk.kuerzel, self.dsnr)  
+    self.date=None
+    self.ID=None
     
     self.html = self.getAntragHTML() 
     
@@ -45,19 +46,28 @@ class Drucksache:
     root = self.parsetree.getroot()  
     #the relevant information is found in tr's with classes zl11 and zl12
     zl11 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
-    zl12 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")    
+    zl12 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
+    title_ = root.find(".//{http://www.w3.org/1999/xhtml}title").text
+    print(title_)
+    try:
+      self.dsnr =  title_.split(' - ')[1].replace('/','-')
+    except:
+      return
     trs = zl11 + zl12 
     for tr in trs: 
       tds = tr.findall('{http://www.w3.org/1999/xhtml}td') 
       try:
-        self.words = tds[1].find('{http://www.w3.org/1999/xhtml}a').text.split() 
-        self.dsnr = self.words[0]
+        self.words = tds[1].find('{http://www.w3.org/1999/xhtml}a').text.split()  
+        self.date = self.words[0]
         self.title = ' '.join(self.words[1:]) 
       except AttributeError:
         continue
       self.url = baseurl+tds[1].find('{http://www.w3.org/1999/xhtml}a').attrib['href']
       #partei = tds[3].text
       self.typ = tds[5].text   
+      
+    self.ID = "%s_%s" % (self.bezirk.kuerzel, self.dsnr)  
+    print(self.ID)
     self.text = self.getAntragText()
     self.status = self.getStatus()
     self.ausschuss = self.getAusschussFields()
@@ -71,7 +81,10 @@ class Drucksache:
       tree = self.parsetree
       root = tree.getroot()  
       bodys = root.findall('.//{http://www.w3.org/1999/xhtml}body')
-      text = '\n'.join([a for a in bodys[1].itertext()]) 
+      try:
+        text = '\n'.join([a for a in bodys[1].itertext()]) 
+      except IndexError:
+        text = ''
     except ET.ParseError:
       chunk = html.split('<meta name="generator" content="Aspose.Words for .NET')[1]
       text = re.sub('<[^>]*?>','',chunk) 
@@ -221,9 +234,16 @@ class Drucksache:
     aufgefordert 
     erhalten  """.split()]
     return set([x for x in re.split('[^a-zäöüß]',txt.lower()) if len(x)>3 and x not in stopwords])        
-                             
+              
+  def write(self):
+    d = self.__dict__
+    del d['parsetree']
+    del d['html']
+    del d['bezirk']
+    f = open('out/%s'%self.ID, 'w')
+    f.write(json.dumps(d))
      
-  def write(self,s, format='csv'):
+  def writeold(self,s, format='csv'):
     """output Antrag data in tabular form"""
     
     if format=='wiki':
