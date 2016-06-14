@@ -8,6 +8,7 @@ from  html.entities import name2codepoint
 import tempfile  
 import re
 import json 
+from bs4 import BeautifulSoup
 
 class Drucksache:
   def __init__(self, bezirk, filename, parteien, baseurl):
@@ -16,7 +17,7 @@ class Drucksache:
     self.url = filename
     self.parsetree = None
     self.dsnr = None
-    self.titel = None
+    self.title = None
     self.url = None
     self.typ = None 
     self.html = None 
@@ -29,27 +30,31 @@ class Drucksache:
     
     self.html = self.getAntragHTML() 
     
-    parser = ET.XMLParser()
-    parser.parser.UseForeignDTD(True)
-    parser.entity.update((k, chr(name2codepoint[k])) for k in name2codepoint)      
-    tf = tempfile.NamedTemporaryFile(delete=False)
-    tempfilename = tf.name  
-    tf.write(bytes(self.html\
-                    .replace('<!doctype html>','')\
-                    .replace('&','&amp;'), 'utf8'))
-    tf.close()  
-    try:
-      self.parsetree = ET.parse(tempfilename, parser=parser)      
-    except ET.ParseError:
-      print(tempfilename, "could not be parsed")
-      return
-    root = self.parsetree.getroot()  
+    soup = BeautifulSoup(self.html, 'html.parser')
+    self.soup = soup
+    #parser = ET.XMLParser()
+    #parser.parser.UseForeignDTD(True)
+    #parser.entity.update((k, chr(name2codepoint[k])) for k in name2codepoint)      
+    #tf = tempfile.NamedTemporaryFile(delete=False)
+    #tempfilename = tf.name  
+    #tf.write(bytes(self.html\
+                    #.replace('<!doctype html>','')\
+                    #.replace('&','&amp;'), 'utf8'))
+    #tf.close()  
+    #try:
+      #self.parsetree = ET.parse(tempfilename, parser=parser)      
+    #except ET.ParseError:
+      #print(tempfilename, "could not be parsed")
+      #return
+    #root = self.parsetree.getroot()  
+    root = soup
     #the relevant information is found in tr's with classes zl11 and zl12
-    zl11 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
-    zl12 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
-    title_ = root.find(".//{http://www.w3.org/1999/xhtml}title").text 
+    zl11 = root.find_all(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
+    zl12 = root.find_all(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
+    title_ = root.find("title").text 
     try:
       self.dsnr =  title_.split(' - ')[1].replace('/','-')
+      self.title =  title_
     except:
       return
     trs = zl11 + zl12 
@@ -76,17 +81,12 @@ class Drucksache:
     return self.sanitize(open(self.filename, encoding="latin-1").read(),self.bezirk)
                    
   def getAntragText(self):
-    try:
-      tree = self.parsetree
-      root = tree.getroot()  
-      bodys = root.findall('.//{http://www.w3.org/1999/xhtml}body')
-      try:
-        text = '\n'.join([a for a in bodys[1].itertext()]) 
-      except IndexError:
-        text = ''
-    except ET.ParseError:
-      chunk = html.split('<meta name="generator" content="Aspose.Words for .NET')[1]
-      text = re.sub('<[^>]*?>','',chunk) 
+    bodys = self.soup.find_all('body')
+    #print(len(bodys))
+    #print(bodys[0])
+    text = '\n'.join(b.text for b in bodys) 
+    #chunk = html.split('<meta name="generator" content="Aspose.Words for .NET')[1]
+    #text = re.sub('<[^>]*?>','',chunk) 
     return text
     
     
@@ -235,10 +235,11 @@ class Drucksache:
     return set([x for x in re.split('[^a-zäöüß]',txt.lower()) if len(x)>3 and x not in stopwords])        
               
   def write(self):
-    d = self.__dict__
-    del d['parsetree']
-    del d['html']
-    del d['bezirk']
+    d = dict(bezirk=self.bezirk.name,
+             dsnr=self.dsnr,
+             typ=self.typ,
+             title=self.title
+             )
     f = open('out/%s'%self.ID, 'w')
     f.write(json.dumps(d))
      
