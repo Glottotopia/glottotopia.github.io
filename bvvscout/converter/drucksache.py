@@ -47,8 +47,7 @@ class Drucksache:
     #the relevant information is found in tr's with classes zl11 and zl12
     zl11 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
     zl12 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
-    title_ = root.find(".//{http://www.w3.org/1999/xhtml}title").text
-    print(title_)
+    title_ = root.find(".//{http://www.w3.org/1999/xhtml}title").text 
     try:
       self.dsnr =  title_.split(' - ')[1].replace('/','-')
     except:
