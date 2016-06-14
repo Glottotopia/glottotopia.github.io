@@ -1,3 +1,5 @@
+# -*- coding: utf8 -*-
+
 class Bezirk:
   def __init__(self,name,kuerzel,atlfdnrs):
     self.name = name
@@ -21,7 +23,7 @@ class Land:
           '117':('Piraten','Linke',)     
           } 
           ),
-          Bezirk(u'Tempelhof-Schöneberg',
+          Bezirk('Tempelhof-Schöneberg',
           'TS',
           {
             '132':('Piraten',),
@@ -46,7 +48,7 @@ class Land:
             '146':('Piraten',),
             } 
             ),
-            Bezirk(u'Treptow-Köpenick',
+            Bezirk('Treptow-Köpenick',
             'TK',
             {
               '141':('Piraten',),
@@ -92,7 +94,7 @@ class Land:
                 '111':('Piraten','SPD','Gruene',), 
                 } 
                 ),
-                Bezirk('Spandau',
+                Bezirk('Spanda',
                 'SP',
                 {
                   '164':('Piraten',),
@@ -161,7 +163,7 @@ class Land:
                       '205':('Piraten','SPD','Gruene',), 
                       } 
                       ),
-                      Bezirk(u'Neukölln',
+                      Bezirk('Neukölln',
                       'NK',
                       {
                         '71':('Piraten',),
