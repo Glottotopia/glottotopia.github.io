@@ -36,8 +36,8 @@ def queryNominatim(p,bezirk):
   
       
 def getLocation(text,bezirk):    
-  nonstrasse = ["Einbahnstraße","Einkaufsstraße","Fahrradstraße", "Hauptverkehrsstraße", "Spielplatz", "Schulplatz", "Hauptstraße", "Der Platz", "Den Platz", "Die Straße", "Der Straße", "Serviceplatz", "Stellplatz", "Arbeitsplatz", "Sportplatz", "Parkplatz", "Stadtplatz"]              
-  viastring = "(Straße|Strasse|Platz|Brücke|Allee)" 
+  nonstrasse = ["Einbahnstraße","Einkaufsstraße","Fahrradstraße", "Hauptverkehrsstraße", "Spielplatz", "Schulplatz", "Hauptstraße", "Der Platz", "Den Platz", "Dem Platz", "Die Straße", "Der Straße", "Serviceplatz", "Stellplatz", "Arbeitsplatz", "Sportplatz", "Parkplatz", "Stadtplatz", "Schulplatz"]              
+  viastring = "(Straße|Strasse|Platz|Brücke|Allee|Chaussee|Landstraße|Landstrasse|Ufer)" 
   kleinvia = re.findall("([A-ZÖÜÄ][a-zäöüß]+%s) *([0-9]*)"%viastring.lower(),text)            
   grossvia = re.findall("([A-ZÖÜÄ][a-zäöüß]+ +%s) *([0-9]*)"%viastring,text)
   strichvia =  re.findall("([A-ZÖÜÄ][a-zäöüß-]+%s) *([0-9]*)"%viastring,text)
@@ -68,9 +68,8 @@ def getLocation(text,bezirk):
       continue
     if d[k] == maxvalue:
       candidates.append(k) 
-  coords = [queryNominatim(c,bezirk) for c in candidates]
-  coords = [x for x in coords if x != None]
-  #print(coords)
+  coords = [(c,queryNominatim(c,bezirk)) for c in candidates]
   if len(coords) >0:  
     return coords[0] 
+  return '',None
             

@@ -23,6 +23,7 @@ class Drucksache:
     self.text = None 
     self.status = None
     self.parteien = parteien
+    self.address = None
     self.location = None
     self.ausschuss = None
     self.date=None
@@ -75,7 +76,7 @@ class Drucksache:
     self.text = self.getAntragText()
     self.status = self.getStatus()
     self.ausschuss = self.getAusschussFields()
-    self.location = getLocation(self.text,self.bezirk)
+    self.address,self.location = getLocation(self.text,self.bezirk)
     
   def getAntragHTML(self):
     return self.sanitize(open(self.filename, encoding="latin-1").read(),self.bezirk)
@@ -233,8 +234,8 @@ class Drucksache:
     aufgefordert 
     erhalten  """.split()]
     return set([x for x in re.split('[^a-zäöüß]',txt.lower()) if len(x)>3 and x not in stopwords])        
-              
-  def write(self):
+  
+  def generatejson(self):
     latitude = 52.561944 #Insel Großer Wall in Spandau
     longitude = 13.226944
     try:
@@ -243,28 +244,34 @@ class Drucksache:
       pass
     except ValueError:
       pass
-    
-    d1 = dict(bezirk=self.bezirk.name,
+    contentd = dict(bezirk=self.bezirk.name,
              dsnr=self.dsnr,
              typ=self.typ,
              title=self.title,
              text=self.text,
              url=self.url,
              date=self.date,
-             ausschuss=self.ausschuss
+             ausschuss=self.ausschuss,
+             address=self.address
              )
-    d = { 
+    geojsonfeature = { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [float(longitude), float(latitude)]},
+          "properties": contentd
+          }
+    self.geojson = geojsonfeature  
+    
+    
+  def write(self):        
+    singled = { 
       "type": "FeatureCollection",
       "features": [
-        { "type": "Feature",
-          "geometry": {"type": "Point", "coordinates": [float(longitude), float(latitude)]},
-          "properties": d1
-          }
+        self.geojson
        ]
-     }
+     }        
     f = open('out/%s.geojson'%self.ID, 'w')
-    f.write(json.dumps(d))
-     
+    f.write(json.dumps(singled))
+    f.close()
+    
   def writeold(self,s, format='csv'):
     """output Antrag data in tabular form"""
     

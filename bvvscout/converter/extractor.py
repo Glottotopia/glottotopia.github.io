@@ -60,7 +60,19 @@ if __name__ == '__main__':
       kuerzel = bezirk.kuerzel
       print(kuerzel)
       files = glob.glob("bezirksdrucksachen/%s/*/*"%kuerzel)
+      drucksachen = []
       for f in files:
        ds = Drucksache(bezirk,f,"Parteien",berlin.baseurl)
+       ds.generatejson()
        ds.write()
+       drucksachen.append(ds)
+      allfeaturejson = [ds.geojson for ds in drucksachen if ds.geojson.latitude!=52.561944]
+      globaljson = { 
+        "type": "FeatureCollection",
+        "features": allfeaturejson
+      }       
+      f = open('out/global.geojson'%self.ID, 'w')
+      f.write(json.dumps(globaljson))
+      f.close()
+      
  
