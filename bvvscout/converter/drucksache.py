@@ -40,8 +40,8 @@ class Drucksache:
     try:
       self.parsetree = ET.parse(tempfilename, parser=parser)      
     except ET.ParseError:
-      print(tempfilename)
-      raise
+      print(tempfilename, "could not be parsed")
+      return
     root = self.parsetree.getroot()  
     #the relevant information is found in tr's with classes zl11 and zl12
     zl11 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
