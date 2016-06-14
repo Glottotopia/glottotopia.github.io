@@ -36,7 +36,7 @@ def queryNominatim(p,bezirk):
   
       
 def getLocation(text,bezirk):    
-  nonstrasse = ["Einbahnstraße","Einkaufsstraße","Fahrradstraße", "Hauptverkehrsstraße", "Spielplatz", "Schulplatz", "Hauptstraße", "Der Platz", "Den Platz", "Die Straße", "Der Straße", "Serviceplatz", "Stellplatz", "Arbeitsplatz", "Sportplatz", "Parkplatz"]              
+  nonstrasse = ["Einbahnstraße","Einkaufsstraße","Fahrradstraße", "Hauptverkehrsstraße", "Spielplatz", "Schulplatz", "Hauptstraße", "Der Platz", "Den Platz", "Die Straße", "Der Straße", "Serviceplatz", "Stellplatz", "Arbeitsplatz", "Sportplatz", "Parkplatz", "Stadtplatz"]              
   viastring = "(Straße|Strasse|Platz|Brücke|Allee)" 
   kleinvia = re.findall("([A-ZÖÜÄ][a-zäöüß]+%s) *([0-9]*)"%viastring.lower(),text)            
   grossvia = re.findall("([A-ZÖÜÄ][a-zäöüß]+ +%s) *([0-9]*)"%viastring,text)
