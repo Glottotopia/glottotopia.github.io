@@ -3,12 +3,13 @@
 from xml.etree  import ElementTree as ET 
 from helpers import getLocation
 
-#from htmlentitydefs import name2codepoint
+from  html.entities import name2codepoint
 
 import tempfile  
+import re
 
 class Drucksache:
-  def __init__(self, bezirk, filename, parteien):
+  def __init__(self, bezirk, filename, parteien, baseurl):
     self.filename = filename   
     print(filename)
     self.bezirk = bezirk  
@@ -29,13 +30,18 @@ class Drucksache:
     
     parser = ET.XMLParser()
     parser.parser.UseForeignDTD(True)
-    #parser.entity.update((x, unichr(i)) for x, i in name2codepoint.iteritems())      
+    parser.entity.update((k, chr(name2codepoint[k])) for k in name2codepoint)      
     tf = tempfile.NamedTemporaryFile(delete=False)
     tempfilename = tf.name  
-    tf.write(self.html.decode('Latin-1'))#.encode('utf8', 'xmlcharrefreplace')
+    tf.write(bytes(self.html\
+                    .replace('<!doctype html>','')\
+                    .replace('&','&amp;'), 'utf8'))
     tf.close()  
-    
-    self.parsetree = ET.parse(tempfilename, parser=parser)      
+    try:
+      self.parsetree = ET.parse(tempfilename, parser=parser)      
+    except ET.ParseError:
+      print(tempfilename)
+      raise
     root = self.parsetree.getroot()  
     #the relevant information is found in tr's with classes zl11 and zl12
     zl11 = root.findall(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
@@ -43,19 +49,22 @@ class Drucksache:
     trs = zl11 + zl12 
     for tr in trs: 
       tds = tr.findall('{http://www.w3.org/1999/xhtml}td') 
-      self.words = tds[1].find('{http://www.w3.org/1999/xhtml}a').text.split() 
-      self.dsnr = words[0]
-      self.title = ' '.join(words[1:]) 
-      self.url = self.baseurl+tds[1].find('{http://www.w3.org/1999/xhtml}a').attrib['href']
+      try:
+        self.words = tds[1].find('{http://www.w3.org/1999/xhtml}a').text.split() 
+        self.dsnr = self.words[0]
+        self.title = ' '.join(self.words[1:]) 
+      except AttributeError:
+        continue
+      self.url = baseurl+tds[1].find('{http://www.w3.org/1999/xhtml}a').attrib['href']
       #partei = tds[3].text
       self.typ = tds[5].text   
-    self.text = self.getAntragText(antrag.html)
-    self.status = self.getStatus(antrag.html)
-    self.ausschuss = self.getAusschussFields(antrag.html)
-    self.location = getLocation(self.text)
+    self.text = self.getAntragText()
+    self.status = self.getStatus()
+    self.ausschuss = self.getAusschussFields()
+    self.location = getLocation(self.text,self.bezirk)
     
   def getAntragHTML(self):
-    return self.sanitize(open(self.filename).read(),self.bezirk)
+    return self.sanitize(open(self.filename, encoding="latin-1").read(),self.bezirk)
                    
   def getAntragText(self):
     try:
@@ -117,8 +126,10 @@ class Drucksache:
         a = a[:-2]  
         if bezirk.name in ('Friedrichshain-Kreuzberg', 'Treptow-Köpenick' ):
           offset = 2
-        divs = '\n'+  offset * '</div>'  
-        result = '\n'.join(a)+divs+'\n</body>\n        </html>'.encode('utf8') 
+        #print(offset)
+        #divs = '\n'+  offset * '</div>'  
+        divs = ''
+        result = '\n'.join(a)+divs+'\n</body>\n        </html>' 
         return result
                            
   def conformspelling(self,b):

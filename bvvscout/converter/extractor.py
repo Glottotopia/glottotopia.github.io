@@ -48,7 +48,7 @@ class ALLRis:
 #</doc></add>
 #""" 
 
-    baseurl = "http://www.berlin.de"
+    
     
     locationstore = {}
  
@@ -60,5 +60,5 @@ if __name__ == '__main__':
       kuerzel = bezirk.kuerzel
       print(kuerzel)
       files = glob.glob("bezirksdrucksachen/%s/*/*"%kuerzel)
-      bezirk.drucksachen = [Drucksache(bezirk,f,"Parteien") for f in files]
+      bezirk.drucksachen = [Drucksache(bezirk,f,"Parteien",berlin.baseurl) for f in files]
  

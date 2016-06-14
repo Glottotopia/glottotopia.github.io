@@ -9,7 +9,7 @@ class Bezirk:
     
 class Land:
       """We use the Land class for Berlin, even if other Laender do not have Bezirke as immediate constituents """    
-      
+      baseurl = "http://www.berlin.de"
       bezirke =  [
         Bezirk('Friedrichshain-Kreuzberg',
         'FK', 
