@@ -53,8 +53,8 @@ class Drucksache:
     zl12 = root.find_all(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
     title_ = root.find("title").text 
     try:
-      self.dsnr =  title_.split(' - ')[1].replace('/','-')
-      self.title =  title_
+      useless, self.dsnr, self.title =  title_.split(' - ')
+      self.dsnr = self.dsnr.replace('/','-')
     except:
       return
     trs = zl11 + zl12 
@@ -235,12 +235,23 @@ class Drucksache:
     return set([x for x in re.split('[^a-zäöüß]',txt.lower()) if len(x)>3 and x not in stopwords])        
               
   def write(self):
-    d = dict(bezirk=self.bezirk.name,
+    latitude, longitude = self.location.split(',')
+    
+    d1 = dict(bezirk=self.bezirk.name,
              dsnr=self.dsnr,
              typ=self.typ,
              title=self.title
              )
-    f = open('out/%s'%self.ID, 'w')
+    d = { 
+      "type": "FeatureCollection",
+      "features": [
+        { "type": "Feature",
+          "geometry": {"type": "Point", "coordinates": [float(longitude), float(latitude)]},
+          "properties": d1
+          }
+       ]
+     }
+    f = open('out/%s.geojson'%self.ID, 'w')
     f.write(json.dumps(d))
      
   def writeold(self,s, format='csv'):
