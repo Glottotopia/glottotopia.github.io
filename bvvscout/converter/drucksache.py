@@ -14,7 +14,6 @@ class Drucksache:
   def __init__(self, bezirk, filename, parteien, baseurl):
     self.filename = filename 
     self.bezirk = bezirk  
-    self.url = filename
     self.parsetree = None
     self.dsnr = None
     self.title = None
@@ -25,6 +24,7 @@ class Drucksache:
     self.status = None
     self.parteien = parteien
     self.location = None
+    self.ausschuss = None
     self.date=None
     self.ID=None
     
@@ -49,8 +49,8 @@ class Drucksache:
     #root = self.parsetree.getroot()  
     root = soup
     #the relevant information is found in tr's with classes zl11 and zl12
-    zl11 = root.find_all(".//{http://www.w3.org/1999/xhtml}tr[@class='zl11']")
-    zl12 = root.find_all(".//{http://www.w3.org/1999/xhtml}tr[@class='zl12']")  
+    zl11 = root.find_all(".//tr[@class='zl11']")
+    zl12 = root.find_all(".//tr[@class='zl12']")  
     title_ = root.find("title").text 
     try:
       useless, self.dsnr, self.title =  title_.split(' - ')
@@ -59,14 +59,14 @@ class Drucksache:
       return
     trs = zl11 + zl12 
     for tr in trs: 
-      tds = tr.findall('{http://www.w3.org/1999/xhtml}td') 
+      tds = tr.findall('td') 
       try:
-        self.words = tds[1].find('{http://www.w3.org/1999/xhtml}a').text.split()  
-        self.date = self.words[0]
-        self.title = ' '.join(self.words[1:]) 
+        self.text = tds[1].find('a').text
+        self.words = self.text.split()  
+        self.date = self.words[0]         
       except AttributeError:
         continue
-      self.url = baseurl+tds[1].find('{http://www.w3.org/1999/xhtml}a').attrib['href']
+      self.url = baseurl+tds[1].find('a').attrib['href']
       #partei = tds[3].text
       self.typ = tds[5].text   
       
@@ -84,7 +84,7 @@ class Drucksache:
     bodys = self.soup.find_all('body')
     #print(len(bodys))
     #print(bodys[0])
-    text = '\n'.join(b.text for b in bodys) 
+    text = bodys[1].text
     #chunk = html.split('<meta name="generator" content="Aspose.Words for .NET')[1]
     #text = re.sub('<[^>]*?>','',chunk) 
     return text
@@ -103,7 +103,7 @@ class Drucksache:
                
   def getAusschussFields(self):
     ausschuesse =  list(set(re.findall("Ausschuss für ([A-Za-zÄÖÜäöüß]+)", self.html)))
-    return "\n".join(['<field name="ausschuss">%s</field>'%x for x in ausschuesse])
+    return "; ".join(ausschuesse)
                  
           
   def sanitize(self,f,bezirk): 
@@ -235,12 +235,23 @@ class Drucksache:
     return set([x for x in re.split('[^a-zäöüß]',txt.lower()) if len(x)>3 and x not in stopwords])        
               
   def write(self):
-    latitude, longitude = self.location.split(',')
+    latitude = 52.561944 #Insel Großer Wall in Spandau
+    longitude = 13.226944
+    try:
+      latitude, longitude = self.location.split(',')
+    except AttributeError:
+      pass
+    except ValueError:
+      pass
     
     d1 = dict(bezirk=self.bezirk.name,
              dsnr=self.dsnr,
              typ=self.typ,
-             title=self.title
+             title=self.title,
+             text=self.text,
+             url=self.url,
+             date=self.date,
+             ausschuss=self.ausschuss
              )
     d = { 
       "type": "FeatureCollection",
