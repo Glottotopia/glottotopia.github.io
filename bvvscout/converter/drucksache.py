@@ -85,7 +85,10 @@ class Drucksache:
     bodys = self.soup.find_all('body')
     #print(len(bodys))
     #print(bodys[0])
-    text = bodys[1].text
+    try:
+      text = bodys[1].text
+    except IndexError:
+      text = ''
     #chunk = html.split('<meta name="generator" content="Aspose.Words for .NET')[1]
     #text = re.sub('<[^>]*?>','',chunk) 
     return text
