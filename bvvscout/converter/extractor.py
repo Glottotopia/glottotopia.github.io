@@ -8,6 +8,7 @@ import re
 import glob
 from drucksache import Drucksache
 from bvvberlin import Land
+import json
 
 class ALLRis:  
     #wikitemplate = u""" 
@@ -67,7 +68,7 @@ if __name__ == '__main__':
        ds.write()
        drucksachen.append(ds)
        
-      allfeaturejson = [ds.geojson for ds in drucksachen if geojson["geometry"]["coordinates"][1]!=52.561944]
+      allfeaturejson = [ds.geojson for ds in drucksachen if ds.geojson["geometry"]["coordinates"][1]!=52.561944]
       globaljson = { 
         "type": "FeatureCollection",
         "features": allfeaturejson
