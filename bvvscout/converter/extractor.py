@@ -57,23 +57,26 @@ class ALLRis:
 if __name__ == '__main__':
     berlin = Land()
     allris = ALLRis()   
-    for bezirk in berlin.bezirke:      
+    for bezirk in berlin.bezirke:    
       kuerzel = bezirk.kuerzel
-      print(kuerzel)
-      files = glob.glob("bezirksdrucksachen/%s/*/*41"%kuerzel)
+      #print(kuerzel)
+      files = glob.glob("bezirksdrucksachen/%s/*/*241"%kuerzel)
       drucksachen = []
       for f in files:
        ds = Drucksache(bezirk,f,"Parteien",berlin.baseurl)
        ds.generatejson()
        ds.write()
        drucksachen.append(ds)
-       
-      allfeaturejson = [ds.geojson for ds in drucksachen if ds.geojson["geometry"]["coordinates"][1]!=52.561944]
+      
+      print(len(drucksachen))
+      allfeaturejson = [ds.geojson 
+                        for ds in drucksachen 
+                        if ds.geojson["geometry"]["coordinates"][1] != 52.561944]
       globaljson = { 
         "type": "FeatureCollection",
         "features": allfeaturejson
       }       
-      f = open('out/global.geojson', 'w')
+      f = open('out/global-%s.geojson'%kuerzel, 'w')
       f.write(json.dumps(globaljson))
       f.close()
       
