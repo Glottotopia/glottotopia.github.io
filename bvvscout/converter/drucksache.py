@@ -9,6 +9,7 @@ import tempfile
 import re
 import json 
 from bs4 import BeautifulSoup
+import pprint
 
 class Drucksache:
   def __init__(self, bezirk, filename, parteien, baseurl):
@@ -70,13 +71,34 @@ class Drucksache:
       self.url = baseurl+tds[1].find('a').attrib['href']
       #partei = tds[3].text
       self.typ = tds[5].text   
+      print(self.typ)
       
     self.ID = "%s_%s" % (self.bezirk.kuerzel, self.dsnr)  
     print(self.ID)
     self.text = self.getAntragText()
     self.status = self.getStatus()
-    self.ausschuss = self.getAusschussFields()
+    #self.ausschuss = self.getAusschussFields()
+    metadatadict = self.getMetadata()
+    self.parteien = metadatadict.get('Initiator:')
+    self.verfasser = metadatadict.get('Verfasser:')
+    self.typ = metadatadict.get('Drucksache-Art:')
+    self.ausschuss = metadatadict.get('Beratungsfolge:')
     self.address,self.location = getLocation(self.text,self.bezirk)
+    
+  def getMetadata(self):
+    categories = self.soup.find_all("td", class_="kb1")
+    values = [k.find_next_sibling() for k in categories]
+    c2s = [c.text for c in categories]
+    v2s = []
+    for v in values:
+      try: 
+        text = v.text.strip()
+      except AttributeError:
+        text = None
+      v2s.append(text)
+    #pprint.pprint(list(zip(c2s,v2s)))
+    return(dict(zip(c2s,v2s)))
+      
     
   def getAntragHTML(self):
     return self.sanitize(open(self.filename, encoding="latin-1").read(),self.bezirk)
@@ -255,7 +277,8 @@ class Drucksache:
              url=self.url,
              date=self.date,
              ausschuss=self.ausschuss,
-             address=self.address
+             address=self.address,
+             parteien=self.parteien
              )
     geojsonfeature = { "type": "Feature",
           "geometry": {"type": "Point", "coordinates": [float(longitude), float(latitude)]},
