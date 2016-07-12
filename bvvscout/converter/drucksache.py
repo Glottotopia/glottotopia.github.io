@@ -77,12 +77,22 @@ class Drucksache:
     print(self.ID)
     self.text = self.getAntragText()
     self.status = self.getStatus()
-    #self.ausschuss = self.getAusschussFields()
+    self.ausschuss = self.getAusschussFields()
     metadatadict = self.getMetadata()
-    self.parteien = metadatadict.get('Initiator:')
+    initiatoren = metadatadict.get('Initiator:').lower()
+    self.parteien = []
+    for p in (("spd","SPD"),
+              ("cdu","CDU"),
+              ("fdp","FDP"), 
+              ("link","Linke"),
+              ("pirat","Piraten"),
+              ("grünen","Grüne"),
+                ):
+      if p[0] in initiatoren:
+        self.parteien.append(p[1])        
     self.verfasser = metadatadict.get('Verfasser:')
     self.typ = metadatadict.get('Drucksache-Art:')
-    self.ausschuss = metadatadict.get('Beratungsfolge:')
+    #self.ausschuss = metadatadict.get('Beratungsfolge:')
     self.address,self.location = getLocation(self.text,self.bezirk)
     
   def getMetadata(self):

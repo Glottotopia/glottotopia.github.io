@@ -59,7 +59,7 @@ if __name__ == '__main__':
     for bezirk in berlin.bezirke:      
       kuerzel = bezirk.kuerzel
       print(kuerzel)
-      files = glob.glob("bezirksdrucksachen/%s/*/*5941"%kuerzel)
+      files = glob.glob("bezirksdrucksachen/%s/*/*41"%kuerzel)
       drucksachen = []
       for f in files:
        ds = Drucksache(bezirk,f,"Parteien",berlin.baseurl)
