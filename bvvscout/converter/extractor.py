@@ -66,7 +66,8 @@ if __name__ == '__main__':
        ds.generatejson()
        ds.write()
        drucksachen.append(ds)
-      allfeaturejson = [ds.geojson for ds in drucksachen if ds.geojson.latitude!=52.561944]
+       
+      allfeaturejson = [ds.geojson for ds in drucksachen if geojson["geometry"]["coordinates"][1]!=52.561944]
       globaljson = { 
         "type": "FeatureCollection",
         "features": allfeaturejson
