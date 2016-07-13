@@ -60,13 +60,14 @@ if __name__ == '__main__':
     for bezirk in berlin.bezirke:    
       kuerzel = bezirk.kuerzel
       #print(kuerzel)
-      files = glob.glob("bezirksdrucksachen/%s/*/*241"%kuerzel)
+      files = glob.glob("bezirksdrucksachen/%s/*/*"%kuerzel)
       drucksachen = []
       for f in files:
        ds = Drucksache(bezirk,f,"Parteien",berlin.baseurl)
        ds.generatejson()
        ds.write()
        drucksachen.append(ds)
+
       
       print(len(drucksachen))
       allfeaturejson = [ds.geojson 

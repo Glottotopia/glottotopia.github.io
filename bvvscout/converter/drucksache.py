@@ -18,7 +18,7 @@ class Drucksache:
     self.parsetree = None
     self.dsnr = None
     self.title = None
-    self.url = None
+    self.url = "http://www.berlin.de/ba-friedrichshain-kreuzberg/politik-und-verwaltung/bezirksverordnetenversammlung/online/"+filename.split('/')[-1]
     self.typ = None 
     self.html = None 
     self.text = None 
@@ -139,7 +139,7 @@ class Drucksache:
                
   def getAusschussFields(self):
     ausschuesse =  list(set(re.findall("Ausschuss für ([A-Za-zÄÖÜäöüß]+)", self.html)))
-    return "; ".join(ausschuesse)
+    return ausschuesse
                  
           
   def sanitize(self,f,bezirk): 
@@ -290,6 +290,28 @@ class Drucksache:
              address=self.address,
              parteien=self.parteien
              )
+    try:
+      wp = self.parteien[0]
+    except IndexError:
+      wp = ''
+    partycolors = dict(
+      SPD='#ff0000',
+      CDU='#000000',
+      Linke='#ff0066',
+      Grüne='#00ff00',
+      Piraten='#ff8800'
+      )
+    contentd['marker-color'] = partycolors.get(wp,'#0033dd')
+    try:
+      if self.typ == 'Antrag':
+        contentd['marker-symbol']='town-hall'
+      if self.typ == 'Resolution':
+        contentd['marker-symbol']='post'    
+      if 'Anfrage' in  self.typ:
+        contentd['marker-symbol']='information'
+    except TypeError:
+      pass
+      
     geojsonfeature = { "type": "Feature",
           "geometry": {"type": "Point", "coordinates": [float(longitude), float(latitude)]},
           "properties": contentd
