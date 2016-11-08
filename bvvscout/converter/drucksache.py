@@ -332,6 +332,7 @@ class Drucksache:
     fullfile.close()
     
     basicjson = {}
+    self.geojson['geometry']
     extrajson = {}
     basicfields=('title',
                   'ID',
@@ -339,17 +340,21 @@ class Drucksache:
                    'date',
                    'marker-color',
                    'marker-symbol',
-                   'bezirk')
+                   'bezirk',
+                   'type')
     for k in self.geojson['properties']:
       if k in basicfields:
         basicjson[k]=self.geojson['properties'][k]
       else:
         extrajson[k]=self.geojson['properties'][k]
     basicd = { 
-      "type": "FeatureCollection",
       "features": [
-        basicjson
-       ]
+          {
+          "type": "FeatureCollection",
+          "geometry": self.geojson['geometry'],
+          "properties":  basicjson
+          }
+        ]
      }  
     basicfile = open('basic/%s.geojson'%self.ID, 'w')
     basicfile.write(json.dumps(basicd))

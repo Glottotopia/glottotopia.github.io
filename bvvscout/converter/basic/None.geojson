@@ -1,1 +1,1 @@
-{"features": [{"title": null, "date": null, "marker-color": "#0033dd", "ID": "FK_None", "dsnr": null, "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"features": [{"properties": {"ID": "FK_None", "bezirk": "Friedrichshain-Kreuzberg", "title": null, "marker-color": "#0033dd", "date": null, "dsnr": null}, "type": "FeatureCollection", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}}]}

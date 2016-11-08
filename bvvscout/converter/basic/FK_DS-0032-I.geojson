@@ -1,1 +1,1 @@
-{"features": [{"marker-color": "#0033dd", "title": "Antifaschistischen Stadtplan\n", "date": null, "marker-symbol": "town-hall", "ID": "FK_DS-0032-I", "dsnr": "DS-0032-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"features": [{"properties": {"ID": "FK_DS-0032-I", "bezirk": "Friedrichshain-Kreuzberg", "title": "Antifaschistischen Stadtplan\n", "marker-color": "#0033dd", "marker-symbol": "town-hall", "date": null, "dsnr": "DS-0032-I"}, "type": "FeatureCollection", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}}]}

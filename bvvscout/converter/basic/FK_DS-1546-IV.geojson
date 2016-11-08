@@ -1,1 +1,1 @@
-{"features": [{"title": "Mindestabstandsfl\u00e4che\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-1546-IV", "dsnr": "DS-1546-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"features": [{"properties": {"ID": "FK_DS-1546-IV", "bezirk": "Friedrichshain-Kreuzberg", "title": "Mindestabstandsfl\u00e4che\n", "marker-color": "#0033dd", "date": null, "dsnr": "DS-1546-IV"}, "type": "FeatureCollection", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}}]}

@@ -1,1 +1,1 @@
-{"features": [{"title": "Wiederherstellung des Tiergeheges im Viktoriapark!\n", "date": null, "marker-color": "#000000", "ID": "FK_DS-1396-IV", "dsnr": "DS-1396-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"features": [{"properties": {"ID": "FK_DS-1396-IV", "bezirk": "Friedrichshain-Kreuzberg", "title": "Wiederherstellung des Tiergeheges im Viktoriapark!\n", "marker-color": "#000000", "date": null, "dsnr": "DS-1396-IV"}, "type": "FeatureCollection", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}}]}

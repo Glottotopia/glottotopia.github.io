@@ -1,1 +1,1 @@
-{"features": [{"title": "B\u00fcrgerinformation bei Bauvorhaben\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-0207-I", "dsnr": "DS-0207-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"features": [{"properties": {"ID": "FK_DS-0207-I", "bezirk": "Friedrichshain-Kreuzberg", "title": "B\u00fcrgerinformation bei Bauvorhaben\n", "marker-color": "#0033dd", "date": null, "dsnr": "DS-0207-I"}, "type": "FeatureCollection", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}}]}
