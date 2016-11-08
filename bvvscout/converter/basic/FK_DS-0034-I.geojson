@@ -1,1 +1,1 @@
-{"features": [{"marker-color": "#0033dd", "title": "Musikschule\n", "date": null, "marker-symbol": "information", "ID": "FK_DS-0034-I", "dsnr": "DS-0034-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "marker-symbol": "information", "title": "Musikschule\n", "date": null, "ID": "FK_DS-0034-I", "dsnr": "DS-0034-I", "marker-color": "#0033dd"}}]}

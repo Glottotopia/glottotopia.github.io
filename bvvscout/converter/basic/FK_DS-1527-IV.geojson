@@ -1,1 +1,1 @@
-{"features": [{"marker-color": "#ff0000", "title": "7000 Euro Programm\n", "date": null, "marker-symbol": "town-hall", "ID": "FK_DS-1527-IV", "dsnr": "DS-1527-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "marker-symbol": "town-hall", "title": "7000 Euro Programm\n", "date": null, "ID": "FK_DS-1527-IV", "dsnr": "DS-1527-IV", "marker-color": "#ff0000"}}]}

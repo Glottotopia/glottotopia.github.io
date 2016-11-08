@@ -1,1 +1,1 @@
-{"features": [{"title": "Standortplanung\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-0177-I", "dsnr": "DS-0177-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Standortplanung\n", "date": null, "ID": "FK_DS-0177-I", "dsnr": "DS-0177-I", "marker-color": "#0033dd"}}]}

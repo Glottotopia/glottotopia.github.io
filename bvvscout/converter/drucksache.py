@@ -55,7 +55,7 @@ class Drucksache:
     zl12 = root.find_all(".//tr[@class='zl12']")  
     title_ = root.find("title").text 
     try:
-      useless, self.dsnr, self.title =  title_.split(' - ')
+      useless, self.dsnr, self.title =  title_.strip().split(' - ')      
       self.dsnr = self.dsnr.replace('/','-')
     except:
       return
@@ -309,7 +309,7 @@ class Drucksache:
       if self.typ == 'Resolution':
         contentd['marker-symbol']='post'    
       if 'Anfrage' in  self.typ:
-        contentd['marker-symbol']='information'
+        contentd['marker-symbol']='?'
     except TypeError:
       pass
       
@@ -348,9 +348,10 @@ class Drucksache:
       else:
         extrajson[k]=self.geojson['properties'][k]
     basicd = { 
+      "type": "FeatureCollection",
       "features": [
           {
-          "type": "FeatureCollection",
+          "type": "Feature",
           "geometry": self.geojson['geometry'],
           "properties":  basicjson
           }

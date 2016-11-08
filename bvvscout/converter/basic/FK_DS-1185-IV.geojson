@@ -1,1 +1,1 @@
-{"features": [{"marker-color": "#000000", "title": "G\u00f6rlitzer Park\n", "date": null, "marker-symbol": "information", "ID": "FK_DS-1185-IV", "dsnr": "DS-1185-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "marker-symbol": "information", "title": "G\u00f6rlitzer Park\n", "date": null, "ID": "FK_DS-1185-IV", "dsnr": "DS-1185-IV", "marker-color": "#000000"}}]}

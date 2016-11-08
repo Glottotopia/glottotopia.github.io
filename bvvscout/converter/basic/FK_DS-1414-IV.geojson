@@ -1,1 +1,1 @@
-{"features": [{"title": "Abwahl eines B\u00fcrgerdeputierten\n", "date": null, "marker-color": "#ff0066", "ID": "FK_DS-1414-IV", "dsnr": "DS-1414-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Abwahl eines B\u00fcrgerdeputierten\n", "date": null, "ID": "FK_DS-1414-IV", "dsnr": "DS-1414-IV", "marker-color": "#ff0066"}}]}

@@ -1,1 +1,1 @@
-{"features": [{"title": "Bebauungsplan VI-38-1\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-1588-IV", "dsnr": "DS-1588-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Bebauungsplan VI-38-1\n", "date": null, "ID": "FK_DS-1588-IV", "dsnr": "DS-1588-IV", "marker-color": "#0033dd"}}]}

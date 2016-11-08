@@ -1,1 +1,1 @@
-{"features": [{"title": "Bona-Peiser-Bibliothek\n", "date": null, "marker-color": "#ff0000", "ID": "FK_DS-1230-IV", "dsnr": "DS-1230-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Bona-Peiser-Bibliothek\n", "date": null, "ID": "FK_DS-1230-IV", "dsnr": "DS-1230-IV", "marker-color": "#ff0000"}}]}

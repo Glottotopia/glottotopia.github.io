@@ -1,1 +1,1 @@
-{"features": [{"title": "Zuwendungen f\u00fcr freie Tr\u00e4ger\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-0011-I", "dsnr": "DS-0011-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Zuwendungen f\u00fcr freie Tr\u00e4ger\n", "date": null, "ID": "FK_DS-0011-I", "dsnr": "DS-0011-I", "marker-color": "#0033dd"}}]}

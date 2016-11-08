@@ -1,1 +1,1 @@
-{"features": [{"marker-color": "#ff8800", "title": "Freudenberg-Areal\n", "date": null, "marker-symbol": "information", "ID": "FK_DS-1586-IV", "dsnr": "DS-1586-IV", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "marker-symbol": "information", "title": "Freudenberg-Areal\n", "date": null, "ID": "FK_DS-1586-IV", "dsnr": "DS-1586-IV", "marker-color": "#ff8800"}}]}

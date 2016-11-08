@@ -1,1 +1,1 @@
-{"features": [{"title": "Absicherung der Biologie- Station am Dathe- Gymnasium\n", "date": null, "marker-color": "#0033dd", "ID": "FK_DS-0112-I", "dsnr": "DS-0112-I", "bezirk": "Friedrichshain-Kreuzberg"}], "type": "FeatureCollection"}
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.226944, 52.561944]}, "properties": {"bezirk": "Friedrichshain-Kreuzberg", "title": "Absicherung der Biologie- Station am Dathe- Gymnasium\n", "date": null, "ID": "FK_DS-0112-I", "dsnr": "DS-0112-I", "marker-color": "#0033dd"}}]}
