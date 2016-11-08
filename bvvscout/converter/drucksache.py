@@ -281,6 +281,7 @@ class Drucksache:
       pass
     contentd = dict(bezirk=self.bezirk.name,
              dsnr=self.dsnr,
+             ID="%s_%s" % (self.bezirk.kuerzel,self.dsnr),
              typ=self.typ,
              title=self.title,
              text=self.text,
@@ -298,7 +299,7 @@ class Drucksache:
       SPD='#ff0000',
       CDU='#000000',
       Linke='#ff0066',
-      Grüne='#00ff00',
+      Gruene='#00ff00',
       Piraten='#ff8800'
       )
     contentd['marker-color'] = partycolors.get(wp,'#0033dd')
@@ -320,15 +321,44 @@ class Drucksache:
     
     
   def write(self):        
-    singled = { 
+    fullfile = open('out/%s.geojson'%self.ID, 'w')
+    fulld = { 
       "type": "FeatureCollection",
       "features": [
         self.geojson
        ]
-     }        
-    f = open('out/%s.geojson'%self.ID, 'w')
-    f.write(json.dumps(singled))
-    f.close()
+     }
+    fullfile.write(json.dumps(fulld))
+    fullfile.close()
+    
+    basicjson = {}
+    extrajson = {}
+    basicfields=('title',
+                  'ID',
+                   'dsnr',
+                   'date',
+                   'marker-color',
+                   'marker-symbol',
+                   'bezirk')
+    for k in self.geojson['properties']:
+      if k in basicfields:
+        basicjson[k]=self.geojson['properties'][k]
+      else:
+        extrajson[k]=self.geojson['properties'][k]
+    basicd = { 
+      "type": "FeatureCollection",
+      "features": [
+        basicjson
+       ]
+     }  
+    basicfile = open('basic/%s.geojson'%self.ID, 'w')
+    basicfile.write(json.dumps(basicd))
+    basicfile.close()
+     
+    extrad = extrajson   
+    extrafile = open('extra/%s.json'%self.ID, 'w')    
+    extrafile.write(json.dumps(extrad))
+    extrafile.close()
     
   def writeold(self,s, format='csv'):
     """output Antrag data in tabular form"""
